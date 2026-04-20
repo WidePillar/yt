@@ -63,7 +63,7 @@ typedef NS_ENUM(NSInteger, ShareEntityType) {
 };
 
 static inline NSString* extractIdWithFormat(GPBUnknownFieldSet *fields, NSInteger fieldNumber, NSString *format) {
-    if (![fields hasField:fieldNumber])
+    if (![fields getField:fieldNumber])
         return nil;
     GPBUnknownField *idField = [fields getField:fieldNumber];
     if ([idField.lengthDelimitedList count] != 1)
@@ -94,7 +94,7 @@ static inline NSString* extractIdWithFormat(GPBUnknownFieldSet *fields, NSIntege
     GPBUnknownFieldSet *fields = shareEntity.unknownFields;
     NSString *shareUrl;
 
-    if ([fields hasField:ShareEntityFieldClip]) {
+    if ([fields getField:ShareEntityFieldClip]) {
         GPBUnknownField *shareEntityClip = [fields getField:ShareEntityFieldClip];
         if ([shareEntityClip.lengthDelimitedList count] != 1)
             return %orig;
