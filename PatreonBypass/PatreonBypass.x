@@ -19,6 +19,14 @@
 - (BOOL)isPro { return YES; }
 %end
 
+// Force enable ad blocking in case it's disabled by default or by DRM
+%hook YTLUserDefaults
+- (BOOL)boolForKey:(NSString *)key {
+    if ([key isEqualToString:@"noAds"]) return YES;
+    return %orig;
+}
+%end
+
 // Disable the "Support me on Patreon" popups/reminders
 %hook YTPromoThrottleController
 - (BOOL)canShowThrottledPromo { return NO; }
