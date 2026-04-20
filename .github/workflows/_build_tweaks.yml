@@ -112,6 +112,14 @@ jobs:
           else
             cd $THEOS/include && git clone --quiet --depth=1 https://github.com/PoomSmart/PSHeader.git
           fi
+ 
+      - name: Clone Protobuf
+        run: |
+          if [ -d "$THEOS/include/Protobuf" ]; then
+            cd $THEOS/include/Protobuf && git pull
+          else
+            cd $THEOS/include && git clone --quiet --depth=1 https://github.com/PoomSmart/Protobuf.git
+          fi
 
       - name: Clone YouPiP
         if: ${{ inputs.enable_youpip }}
