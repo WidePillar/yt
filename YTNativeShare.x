@@ -23,10 +23,10 @@
 
 #import "YouTubeHeader/YTUIUtils.h"
 
-#import "Protobuf/objectivec/GPBDescriptor.h"
-#import "Protobuf/objectivec/GPBMessage.h"
-#import "Protobuf/objectivec/GPBUnknownField.h"
-#import "Protobuf/objectivec/GPBUnknownFieldSet.h"
+#import "YouTubeHeader/GPBDescriptor.h"
+#import "YouTubeHeader/GPBMessage.h"
+#import "YouTubeHeader/GPBUnknownField.h"
+#import "YouTubeHeader/GPBUnknownFieldSet.h"
 
 #define ytlBool(key)  [[[NSUserDefaults alloc] initWithSuiteName:@"com.dvntm.ytlite"] boolForKey:key]
 
