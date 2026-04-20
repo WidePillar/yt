@@ -1,10 +1,5 @@
 #import "YTLite.h"
  
-@interface YTIdentityController : NSObject
-+ (instancetype)sharedInstance;
-- (BOOL)isIncognito;
-@end
-
 static UIImage *YTImageNamed(NSString *imageName) {
     return [UIImage imageNamed:imageName inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
 }
@@ -247,13 +242,9 @@ static UIImage *YTImageNamed(NSString *imageName) {
 - (BOOL)enableSwipeToRemoveInPlaylistWatchEp { return YES; }
 // Enable Old-style Minibar For Playlist Panel
 - (BOOL)queueClientGlobalConfigEnableFloatingPlaylistMinibar { return ytlBool(@"playlistOldMinibar") ? NO : %orig; }
-// Fix Incognito and "Something went wrong" errors
-- (BOOL)enableColdConfigSnapshot { return NO; }
-- (BOOL)enableSampledColdConfigSnapshot { return NO; }
 %end
  
 %hook YTHotConfig
-- (BOOL)enableHotConfigSnapshot { return NO; }
 %end
 
 // Remove Dark Background in Overlay
@@ -353,11 +344,8 @@ static UIImage *YTImageNamed(NSString *imageName) {
 %hook YTVersionUtils
 + (NSString *)appVersion {
     NSString *originalVersion = %orig;
- 
-    if ([[%c(YTIdentityController) sharedInstance] isIncognito]) return originalVersion;
- 
     NSString *fakeVersion = @"19.08.2";
-
+ 
     return (!ytlBool(@"classicQuality") && !ytlBool(@"extraSpeedOptions") && [originalVersion compare:fakeVersion options:NSNumericSearch] == NSOrderedDescending) ? originalVersion : fakeVersion;
 }
 %end
