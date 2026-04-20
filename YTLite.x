@@ -341,7 +341,7 @@ static UIImage *YTImageNamed(NSString *imageName) {
 %hook YTVersionUtils
 + (NSString *)appVersion {
     NSString *originalVersion = %orig;
-    NSString *fakeVersion = @"18.18.2";
+    NSString *fakeVersion = @"19.08.2";
 
     return (!ytlBool(@"classicQuality") && !ytlBool(@"extraSpeedOptions") && [originalVersion compare:fakeVersion options:NSNumericSearch] == NSOrderedDescending) ? originalVersion : fakeVersion;
 }
@@ -353,7 +353,7 @@ static UIImage *YTImageNamed(NSString *imageName) {
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     NSString *appVersion = infoDictionary[@"CFBundleShortVersionString"];
 
-    if ([arg1 isEqualToString:@"18.18.2"]) {
+    if ([arg1 isEqualToString:@"19.08.2"]) {
         arg1 = appVersion;
     } %orig(arg1);
 }
