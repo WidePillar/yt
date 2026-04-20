@@ -20,8 +20,8 @@ static UIImage *YTImageNamed(NSString *imageName) {
 %end
 
 %hook YTDataUtils
-+ (id)spamSignalsDictionary { return ytlBool(@"noAds") ? nil : %orig; }
-+ (id)spamSignalsDictionaryWithoutIDFA { return ytlBool(@"noAds") ? nil : %orig; }
++ (id)spamSignalsDictionary { return ytlBool(@"noAds") ? @{} : %orig; }
++ (id)spamSignalsDictionaryWithoutIDFA { return ytlBool(@"noAds") ? @{} : %orig; }
 %end
 
 %hook YTAdsInnerTubeContextDecorator
