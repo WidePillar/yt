@@ -122,7 +122,7 @@ jobs:
           for f in *.deb *.appex; do
             [ -f "$f" ] && [ "$f" != "*.deb" ] && [ "$f" != "*.appex" ] && tweaks="$tweaks $f"
           done
-          cyan -i youtube.ipa -o YouTubePlus_${{ github.event.inputs.tweak_version }}.ipa -uwef $tweaks -n "${{ github.event.inputs.display_name }}" -b ${{ github.event.inputs.bundle_id }}
+          cyan -i youtube.ipa -o YouTubePlus_${{ github.event.inputs.tweak_version }}.ipa -uwef $tweaks
 
       - name: Upload to GitHub Releases
         uses: softprops/action-gh-release@v3
